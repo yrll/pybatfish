@@ -44,7 +44,7 @@ _OUTPUT_TYPES = {
     "ip": "str",
     "node": "str",
     "prefix": "str",
-    "selfdescribing": "selfdescribing",
+    "selfdescribing": "selfdescribing",  # not a real python type; handled separately in code
     "trace": "pybatfish.datamodel.flow.Trace",
     "tracetree": "pybatfish.datamodel.acl.TraceTree",
 }
@@ -104,6 +104,8 @@ def convert_schema(value: str, usage: str, question_name: Optional[str] = None) 
             raise KeyError(
                 f"Error: unknown selfdescribing schema usage in question {question_name}"
             )
+    elif usage == "python":  # simple python type
+        return value
     elif usage == "input":
         slug = _INPUT_TYPES[value.lower()]
         return convert_schema(slug, "python", question_name)
