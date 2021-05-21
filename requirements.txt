@@ -1,6 +1,7 @@
 attrs>=18.1.0
 deepdiff
 deprecated
+jinja2<3.0
 jupyter
 nbconvert
 nbformat
